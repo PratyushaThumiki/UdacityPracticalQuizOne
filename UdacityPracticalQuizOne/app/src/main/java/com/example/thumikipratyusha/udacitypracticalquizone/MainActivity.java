@@ -31,11 +31,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
+        Button b = (Button) findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                sendMessage();
+            }
+
+        });
         name = (EditText) findViewById(R.id.t1);
         email = (EditText) findViewById(R.id.t2);
         abt = (EditText) findViewById(R.id.t3);
         sharedpreferences = getSharedPreferences(mypreference,Context.MODE_PRIVATE);
-        //SharedPreferences preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         if (sharedpreferences.contains(Name)) {
             name.setText(sharedpreferences.getString(Name, " "));
         }
@@ -59,15 +68,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 data = savedInstanceState.getStringArrayList("data");
             }
-            Toolbar mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-            setSupportActionBar(mTopToolbar);
-            Button b = (Button) findViewById(R.id.button);
-            b.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    sendMessage();
-                }
-
-            });
 
         }
     }
